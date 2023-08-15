@@ -63,38 +63,48 @@ const Board: FC<IBoardProps> = ({ kanban }) => {
     }
   };
 
+  console.log(boards);
+
   return (
     <Box
       sx={{
-        height: "100vh",
+        height: "103vh",
         width: { sm: `calc(100% - ${240}px)` },
-        background: "RGBA(242,244,247)",
+        background: "RGBA(242,244,247, 0.4)",
         marginLeft: "auto",
       }}
     >
-      {!!boards && (
+      {boards ? (
         <DragDropContext onDragEnd={(res) => dragEndHandler(res)}>
           <Grid
+            sx={{ display: "flex", justifyContent: "space-around" }}
             container
             spacing={3}
-            gap={15}
+            // gap={10}
             columns={6}
-            p="96px"
             height={"100%"}
+            px={10}
+            pt={8}
+            pb={2}
           >
             {boards.map((board, i) => (
               <Grid
                 key={i}
                 sx={{
                   paddingTop: "0px",
-                  width: "25%",
+                  width: "28%",
+                  background: "RGBA(242,244,247)",
+                  // padding: "10px 15px",
+                  px: 2,
+                  py: 1,
+                  borderRadius: 3,
                 }}
               >
                 <Stack
                   direction={"row"}
                   justifyContent={"space-between"}
                   alignItems="center"
-                  mb={3}
+                  mb={1}
                 >
                   <Typography
                     sx={{
@@ -113,6 +123,8 @@ const Board: FC<IBoardProps> = ({ kanban }) => {
                 <Droppable key={i} droppableId={board.id.toString()}>
                   {(provided) => (
                     <Stack
+                      border={"1px dashed RGBA(102, 112, 133, 0.4)"}
+                      sx={{ width: "100%" }}
                       spacing={3}
                       {...provided.droppableProps}
                       ref={provided.innerRef}
@@ -140,6 +152,18 @@ const Board: FC<IBoardProps> = ({ kanban }) => {
             ))}
           </Grid>
         </DragDropContext>
+      ) : (
+        <>
+          <img
+            src="src\assets\free-icon-rotated-right-arrow-with-broken-line-64784.png"
+            alt=""
+            style={{
+              transform: "rotate(180deg)",
+              width: "80px",
+              padding: "50px 15px",
+            }}
+          />
+        </>
       )}
       <Modal open={openModal} setOpen={setOpenModal} kanban={kanban} />
     </Box>

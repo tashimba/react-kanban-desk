@@ -24,6 +24,15 @@ type TPropsCard = {
 const Card: FC<TPropsCard> = ({ i, task, board, cardClick, kanban, order }) => {
   const styleFont = { color: "RGBA(102, 112, 133)", fontWeight: "bold" };
   const dispatch = useDispatch();
+  const dateNow = () => {
+    const today = new Date();
+    return {
+      day: today.getDate(),
+      month:
+        today.getMonth() > 10 ? today.getMonth() : "0" + (today.getMonth() + 1),
+    };
+  };
+  dateNow();
   return (
     <Draggable key={task.id} draggableId={task.id.toString()} index={i}>
       {(provided: any) => (
@@ -46,9 +55,11 @@ const Card: FC<TPropsCard> = ({ i, task, board, cardClick, kanban, order }) => {
             {task.title}
           </Typography>
 
-          <Stack spacing={2} direction="row" mb={4}>
-            <Typography sx={styleFont}>23.07</Typography>
-            <Typography sx={styleFont}>Created by</Typography>
+          <Stack spacing={1} direction="row" mb={4}>
+            <Typography sx={styleFont}>
+              {dateNow().day + "." + dateNow().month}
+            </Typography>
+            <Typography sx={styleFont}>Created by </Typography>
           </Stack>
           <Stack direction="row" justifyContent={"space-between"}>
             <IconButton>

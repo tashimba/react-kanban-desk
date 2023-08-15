@@ -50,8 +50,33 @@ export interface ITaskSlice {
 //   maxId: 2,
 // };
 
+const StateBoard = {
+  name: "",
+  boards: {
+    data: [
+      {
+        id: 0,
+        title: "TO DO",
+        orderValue: 0,
+      },
+      {
+        id: 1,
+        title: "DOING",
+        orderValue: 0,
+      },
+      {
+        id: 2,
+        title: "DONE",
+        orderValue: 0,
+      },
+    ],
+  },
+  tasks: [],
+  maxId: 0,
+};
+
 const initialStateBoard = {
-  name: "kanban",
+  name: "",
   boards: {
     data: [
       {
@@ -76,7 +101,7 @@ const initialStateBoard = {
 };
 
 export const initialStateTasks: ITaskSlice = {
-  kanbans: [initialStateBoard],
+  kanbans: [],
 };
 
 export const tasksSlice = createSlice({

@@ -7,6 +7,8 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
+import { ClickAwayListener } from "@mui/base";
+
 import { useDispatch } from "react-redux";
 import { createTask } from "../redux/tasksSlice";
 
@@ -41,7 +43,11 @@ const Modal: FC<IPropsModal> = ({ open, setOpen, kanban }) => {
   };
 
   return (
-    <Dialog open={open.open} fullWidth>
+    <Dialog
+      open={open.open}
+      fullWidth
+      onClose={() => setOpen({ id: -1, open: false })}
+    >
       <DialogContent>
         <DialogContentText>Описание</DialogContentText>
         <TextField

@@ -29,8 +29,8 @@ const LeftBar = () => {
   const [addingKanban, setAddingKanban] = useState(false);
   const [addingName, setAddingName] = useState("");
   const addKanban = () => {
-    dispatch(createKanban(addingName));
     setAddingKanban(false);
+    addingName.length && dispatch(createKanban(addingName));
     setAddingName("");
   };
 
@@ -73,7 +73,7 @@ const LeftBar = () => {
             }}
             onClick={() => setAddingKanban(true)}
           >
-            <Typography>Add new board</Typography>
+            <Typography>Создать новую доску</Typography>
             <AddIcon
               sx={{
                 width: 20,
@@ -81,17 +81,26 @@ const LeftBar = () => {
             />
           </ListItemButton>
           {addingKanban && (
-            <List sx={{ display: "flex", justifyContent: "space-around" }}>
+            <List
+              sx={{ display: "flex", justifyContent: "space-between", mx: 2 }}
+            >
               <TextField
                 value={addingName}
                 onChange={(e) => setAddingName(e.target.value)}
                 size="small"
                 id="standard-basic"
-                label="Название новой доски"
+                label="Название доски"
                 variant="standard"
+                sx={{
+                  width: "70%",
+                }}
               />
-              <IconButton onClick={() => addKanban()} sx={{}} size="small">
-                <CheckIcon />
+              <IconButton onClick={() => addKanban()} sx={{}}>
+                <CheckIcon
+                  sx={{
+                    width: 25,
+                  }}
+                />
               </IconButton>
             </List>
           )}
