@@ -21,60 +21,6 @@ export interface ITaskSlice {
   }[];
 }
 
-// const initialStateBoard = {
-//   name: "kanban",
-//   boards: {
-//     data: [
-//       {
-//         id: 0,
-//         title: "TO DO",
-//         orderValue: 0,
-//       },
-//       {
-//         id: 1,
-//         title: "DOING",
-//         orderValue: 0,
-//       },
-//       {
-//         id: 2,
-//         title: "DONE",
-//         orderValue: 0,
-//       },
-//     ],
-//   },
-//   tasks: [
-//     { board: 0, id: 0, title: "0", order: 0 },
-//     { board: 1, id: 1, title: "1", order: 0 },
-//     { board: 2, id: 2, title: "2", order: 0 },
-//   ],
-//   maxId: 2,
-// };
-
-const StateBoard = {
-  name: "",
-  boards: {
-    data: [
-      {
-        id: 0,
-        title: "TO DO",
-        orderValue: 0,
-      },
-      {
-        id: 1,
-        title: "DOING",
-        orderValue: 0,
-      },
-      {
-        id: 2,
-        title: "DONE",
-        orderValue: 0,
-      },
-    ],
-  },
-  tasks: [],
-  maxId: 0,
-};
-
 const initialStateBoard = {
   name: "",
   boards: {
@@ -123,17 +69,6 @@ export const tasksSlice = createSlice({
           state.kanbans[action.payload.kanban].boards.data[action.payload.board]
             .orderValue,
       });
-
-      //
-      console.log(
-        "order value: ",
-        state.kanbans[action.payload.kanban].boards.data[action.payload.board]
-          .orderValue,
-        state.kanbans[action.payload.kanban].tasks[
-          state.kanbans[action.payload.kanban].tasks.length - 1
-        ].order
-      );
-      //
     },
     deleteTask(state, action) {
       state.kanbans[action.payload.kanban].tasks = state.kanbans[
