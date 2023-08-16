@@ -74,13 +74,12 @@ const Board: FC<IBoardProps> = ({ kanban }) => {
         marginLeft: "auto",
       }}
     >
-      {boards ? (
+      {boards && (
         <DragDropContext onDragEnd={(res) => dragEndHandler(res)}>
           <Grid
             sx={{ display: "flex", justifyContent: "space-around" }}
             container
             spacing={3}
-            // gap={10}
             columns={6}
             height={"100%"}
             px={10}
@@ -152,18 +151,6 @@ const Board: FC<IBoardProps> = ({ kanban }) => {
             ))}
           </Grid>
         </DragDropContext>
-      ) : (
-        <>
-          <img
-            src="src\assets\free-icon-rotated-right-arrow-with-broken-line-64784.png"
-            alt=""
-            style={{
-              transform: "rotate(180deg)",
-              width: "80px",
-              padding: "50px 15px",
-            }}
-          />
-        </>
       )}
       <Modal open={openModal} setOpen={setOpenModal} kanban={kanban} />
     </Box>

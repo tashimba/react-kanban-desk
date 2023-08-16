@@ -7,8 +7,6 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import { ClickAwayListener } from "@mui/base";
-
 import { useDispatch } from "react-redux";
 import { createTask } from "../redux/tasksSlice";
 
@@ -37,7 +35,6 @@ const Modal: FC<IPropsModal> = ({ open, setOpen, kanban }) => {
   const handleSubmit = () => {
     console.log(inputValue);
     dispatch(createTask({ board: open.id, title: inputValue, kanban: kanban }));
-    // dispatch(editTask({ id: 0, title: inputValue }));
     setOpen({ id: -1, open: false });
     setInputValue("");
   };
@@ -59,7 +56,7 @@ const Modal: FC<IPropsModal> = ({ open, setOpen, kanban }) => {
         ></TextField>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleSubmit}>Subscribe</Button>
+        <Button onClick={handleSubmit}>Добавить</Button>
       </DialogActions>
     </Dialog>
   );

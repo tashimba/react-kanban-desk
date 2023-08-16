@@ -44,11 +44,9 @@ const LeftBar = () => {
           width: 240,
         }}
       >
-        {/* <Stack></Stack> */}
         <List
           sx={{
             width: 240,
-            // height: "100vh",
             background: "fff",
           }}
         >
@@ -130,7 +128,28 @@ const LeftBar = () => {
           </Collapse>
         </List>
       </Drawer>
-      {openKanban.open && <Board kanban={openKanban.id} />}
+      {openKanban.open ? (
+        <Board kanban={openKanban.id} />
+      ) : (
+        <Box
+          sx={{
+            height: "103vh",
+            width: { sm: `calc(100% - ${240}px)` },
+            background: "RGBA(242,244,247, 0.4)",
+            marginLeft: "auto",
+          }}
+        >
+          <img
+            src="src\assets\free-icon-rotated-right-arrow-with-broken-line-64784.png"
+            alt=""
+            style={{
+              transform: "rotate(180deg)",
+              width: "80px",
+              padding: "50px 15px",
+            }}
+          />
+        </Box>
+      )}
     </>
   );
 };
